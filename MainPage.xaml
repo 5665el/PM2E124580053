@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PM2E124580053.MainPage"
+             BackgroundColor="#F4F6F8">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="12">
+
+            <Label Text="SITE VISITOR APP" FontAttributes="Bold" FontSize="22"
+                   HorizontalOptions="Center" TextColor="#1F2933"/>
+            <Label Text="IMAGEN SITIO VISITADO" HorizontalOptions="Center" TextColor="#6B7785"/>
+
+            <Border Stroke="#D8DEE4" StrokeThickness="1" HeightRequest="200" BackgroundColor="White">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="14"/>
+                </Border.StrokeShape>
+                <Image x:Name="imgSitio" Aspect="AspectFit"/>
+            </Border>
+
+            <Button Text="Tomar Foto" Clicked="OnTomarFotoClicked"
+                    BackgroundColor="#2B6CB0" TextColor="White" CornerRadius="12"/>
+
+            <Label Text="Latitude" TextColor="#1F2933"/>
+            <Entry x:Name="entryLatitud" IsEnabled="False" BackgroundColor="#E9ECEF"/>
+
+            <Label Text="Longitud" TextColor="#1F2933"/>
+            <Entry x:Name="entryLongitud" IsEnabled="False" BackgroundColor="#E9ECEF"/>
+
+            <Label Text="Descripcion" TextColor="#1F2933"/>
+            <Editor x:Name="editorDescripcion" HeightRequest="80" BackgroundColor="White"/>
+
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="Fill">
+                <Button Text="Agregar" Clicked="OnAgregarClicked"
+                        BackgroundColor="#2F9E44" TextColor="White" CornerRadius="12"
+                        HorizontalOptions="FillAndExpand"/>
+                <Button Text="Lista Sitios" Clicked="OnListaSitiosClicked"
+                        BackgroundColor="#6741D9" TextColor="White" CornerRadius="12"
+                        HorizontalOptions="FillAndExpand"/>
+            </HorizontalStackLayout>
+
+            <Button Text="Salir App" Clicked="OnSalirClicked"
+                    BackgroundColor="#E63946" TextColor="White" CornerRadius="12"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

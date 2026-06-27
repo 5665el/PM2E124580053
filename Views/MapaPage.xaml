@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PM2E124580053.Views.MapaPage"
+             Title="Ubicación">
+
+    <VerticalStackLayout Padding="20" Spacing="16">
+
+        <Label Text="Ubicación del Sitio" FontSize="20" FontAttributes="Bold"
+               HorizontalOptions="Center" TextColor="#1F2933"/>
+
+        <Frame BorderColor="#D8DEE4" CornerRadius="12" Padding="16">
+            <VerticalStackLayout Spacing="8">
+                <Label Text="Descripción:" FontAttributes="Bold" TextColor="#6B7785"/>
+                <Label x:Name="lblDescripcion" TextColor="#1F2933" FontSize="16"/>
+                <Label Text="Coordenadas:" FontAttributes="Bold" TextColor="#6B7785" Margin="0,8,0,0"/>
+                <Label x:Name="lblCoordenadas" TextColor="#1F2933"/>
+            </VerticalStackLayout>
+        </Frame>
+
+        <Button Text="📍 Ver en Google Maps"
+                Clicked="OnVerMapaClicked"
+                BackgroundColor="#2B6CB0" TextColor="White" CornerRadius="12"/>
+
+        <Button Text="📤 Compartir Imagen"
+                Clicked="OnCompartirClicked"
+                BackgroundColor="#2F9E44" TextColor="White" CornerRadius="12"/>
+
+    </VerticalStackLayout>
+</ContentPage>
