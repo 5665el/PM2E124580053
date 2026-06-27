@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PM2E124580053.Views.ListaSitiosPage"
+             Title="Lista de Sitios"
+             BackgroundColor="#F4F6F8">
+
+    <VerticalStackLayout Padding="15" Spacing="12">
+
+        <CollectionView x:Name="collectionSitios" SelectionMode="Single" SelectionChanged="OnItemSelected">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Stroke="#D8DEE4" StrokeThickness="1" Margin="0,5"
+                            BackgroundColor="White">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="14"/>
+                        </Border.StrokeShape>
+                        <Grid Padding="10" ColumnDefinitions="70,*" ColumnSpacing="12">
+
+                            <Border StrokeThickness="0" HeightRequest="60" WidthRequest="60"
+                                    Grid.Column="0" VerticalOptions="Center">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="10"/>
+                                </Border.StrokeShape>
+                                <Border.Clip>
+                                    <RoundRectangleGeometry CornerRadius="10" Rect="0,0,60,60"/>
+                                </Border.Clip>
+                                <Image Source="{Binding Imagen}" Aspect="AspectFill"
+                                       HeightRequest="60" WidthRequest="60"/>
+                            </Border>
+
+                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
+                                <Label Text="{Binding Descripcion}" FontSize="16" FontAttributes="Bold"
+                                       TextColor="#1F2933"/>
+                                <Label Text="{Binding Latitud, StringFormat='Lat: {0:F4}'}" FontSize="12" TextColor="#6B7785"/>
+                                <Label Text="{Binding Longitud, StringFormat='Long: {0:F4}'}" FontSize="12" TextColor="#6B7785"/>
+                            </VerticalStackLayout>
+
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <HorizontalStackLayout Spacing="10" HorizontalOptions="Fill">
+            <Button Text="Eliminar Casa" Clicked="OnEliminarClicked"
+                    BackgroundColor="#E63946" TextColor="White" CornerRadius="12"
+                    HorizontalOptions="FillAndExpand"/>
+            <Button Text="Ver Mapa" Clicked="OnVerMapaClicked"
+                    BackgroundColor="#2B6CB0" TextColor="White" CornerRadius="12"
+                    HorizontalOptions="FillAndExpand"/>
+        </HorizontalStackLayout>
+
+    </VerticalStackLayout>
+</ContentPage>
