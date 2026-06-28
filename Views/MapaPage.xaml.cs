@@ -1,5 +1,3 @@
-using Microsoft.Maui.Controls.Maps;
-using Microsoft.Maui.Maps;
 using PM2E124580053.Models;
 
 namespace PM2E124580053.Views;
@@ -14,26 +12,23 @@ public partial class MapaPage : ContentPage
         _sitio = sitio;
     }
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
         base.OnAppearing();
+        lblDescripcion.Text = _sitio.Descripcion;
+        lblCoordenadas.Text = $"Lat: {_sitio.Latitud}  |  Lon: {_sitio.Longitud}";
+    }
 
-        var ubicacion = new Location(_sitio.Latitud, _sitio.Longitud);
-
-        mapaSitio.MoveToRegion(MapSpan.FromCenterAndRadius(ubicacion, Distance.FromKilometers(1)));
-
-        mapaSitio.Pins.Clear();
-        mapaSitio.Pins.Add(new Pin
+    private async void OnVerMapaClicked(object sender, EventArgs e)
+    {
+        try
         {
-            Location = ubicacion,
-            Label = "Pin: " + _sitio.Descripcion,
-            Type = PinType.Place
-        });
-
-        var status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
-        if (status != PermissionStatus.Granted)
+            var url = $"https://www.google.com/maps?q={_sitio.Latitud},{_sitio.Longitud}";
+            await Browser.Default.OpenAsync(url, BrowserLaunchMode.SystemPreferred);
+        }
+        catch (Exception ex)
         {
-            await DisplayAlert("GPS inactivo", "Active la ubicación para ver su posición en el mapa.", "OK");
+            await DisplayAlert("Error", ex.Message, "OK");
         }
     }
 

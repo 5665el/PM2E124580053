@@ -19,19 +19,24 @@ public partial class ListaSitiosPage : ContentPage
         base.OnAppearing();
         var sitios = await _dataService.ObtenerSitios();
         collectionSitios.ItemsSource = sitios;
+        _sitioSeleccionado = null;
     }
 
-    private async void OnItemSelected(object sender, SelectionChangedEventArgs e)
+    private void OnCheckBoxChanged(object sender, CheckedChangedEventArgs e)
     {
-        if (e.CurrentSelection.FirstOrDefault() is not Sitio sitio) return;
+        if (sender is not CheckBox checkBox || checkBox.BindingContext is not Sitio sitio) return;
 
-        _sitioSeleccionado = sitio;
-        collectionSitios.SelectedItem = null;
-
-        bool irAlMapa = await DisplayAlert("Acción", "Desea ir a la ubicación indicada", "Yes", "No");
-        if (irAlMapa)
+        if (e.Value)
         {
-            await Navigation.PushAsync(new MapaPage(_sitioSeleccionado));
+            // Desmarca el anterior, para que solo uno esté seleccionado a la vez
+            if (_sitioSeleccionado != null && _sitioSeleccionado != sitio)
+                _sitioSeleccionado.IsSelected = false;
+
+            _sitioSeleccionado = sitio;
+        }
+        else if (_sitioSeleccionado == sitio)
+        {
+            _sitioSeleccionado = null;
         }
     }
 
@@ -39,9 +44,17 @@ public partial class ListaSitiosPage : ContentPage
     {
         if (_sitioSeleccionado == null)
         {
-            await DisplayAlert("Atención", "Seleccione un sitio de la lista primero.", "OK");
+            await DisplayAlert("Atención", "Seleccione un sitio con el checkbox primero.", "OK");
             return;
         }
+
+        bool confirmar = await DisplayAlert(
+            "Confirmar eliminación",
+            $"¿Desea eliminar el sitio \"{_sitioSeleccionado.Descripcion}\"?",
+            "Sí",
+            "No");
+
+        if (!confirmar) return;
 
         await _dataService.EliminarSitio(_sitioSeleccionado);
         var sitios = await _dataService.ObtenerSitios();
@@ -53,7 +66,7 @@ public partial class ListaSitiosPage : ContentPage
     {
         if (_sitioSeleccionado == null)
         {
-            await DisplayAlert("Atención", "Seleccione un sitio de la lista primero.", "OK");
+            await DisplayAlert("Atención", "Seleccione un sitio con el checkbox primero.", "OK");
             return;
         }
 

@@ -7,7 +7,7 @@
 
     <VerticalStackLayout Padding="15" Spacing="12">
 
-        <CollectionView x:Name="collectionSitios" SelectionMode="Single" SelectionChanged="OnItemSelected">
+        <CollectionView x:Name="collectionSitios" SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Border Stroke="#D8DEE4" StrokeThickness="1" Margin="0,5"
@@ -15,10 +15,14 @@
                         <Border.StrokeShape>
                             <RoundRectangle CornerRadius="14"/>
                         </Border.StrokeShape>
-                        <Grid Padding="10" ColumnDefinitions="70,*" ColumnSpacing="12">
+                        <Grid Padding="10" ColumnDefinitions="Auto,70,*" ColumnSpacing="12">
+
+                            <CheckBox Grid.Column="0" VerticalOptions="Center"
+                                      IsChecked="{Binding IsSelected}"
+                                      CheckedChanged="OnCheckBoxChanged"/>
 
                             <Border StrokeThickness="0" HeightRequest="60" WidthRequest="60"
-                                    Grid.Column="0" VerticalOptions="Center">
+                                    Grid.Column="1" VerticalOptions="Center">
                                 <Border.StrokeShape>
                                     <RoundRectangle CornerRadius="10"/>
                                 </Border.StrokeShape>
@@ -29,7 +33,7 @@
                                        HeightRequest="60" WidthRequest="60"/>
                             </Border>
 
-                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
+                            <VerticalStackLayout Grid.Column="2" VerticalOptions="Center" Spacing="2">
                                 <Label Text="{Binding Descripcion}" FontSize="16" FontAttributes="Bold"
                                        TextColor="#1F2933"/>
                                 <Label Text="{Binding Latitud, StringFormat='Lat: {0:F4}'}" FontSize="12" TextColor="#6B7785"/>
