@@ -2,29 +2,60 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PM2E124580053.Views.MapaPage"
-             Title="Ubicación">
+             Title="Ubicación"
+			 BackgroundColor="#F7F8FA">
 
     <VerticalStackLayout Padding="20" Spacing="16">
 
-        <Label Text="Ubicación del Sitio" FontSize="20" FontAttributes="Bold"
-               HorizontalOptions="Center" TextColor="#1F2933"/>
+        <Label Text="Ubicación del Sitio"
+			   FontSize="24"
+			   FontAttributes="Bold"
+			   TextColor="#1A1D23"
+			   HorizontalOptions="Start"
+			   Margin="0,0,0,4"/>
 
-        <Frame BorderColor="#D8DEE4" CornerRadius="12" Padding="16">
-            <VerticalStackLayout Spacing="8">
-                <Label Text="Descripción:" FontAttributes="Bold" TextColor="#6B7785"/>
-                <Label x:Name="lblDescripcion" TextColor="#1F2933" FontSize="16"/>
-                <Label Text="Coordenadas:" FontAttributes="Bold" TextColor="#6B7785" Margin="0,8,0,0"/>
-                <Label x:Name="lblCoordenadas" TextColor="#1F2933"/>
+        <Border Stroke="#E4E7EC" StrokeThickness="1" BackgroundColor="#FFFFFF">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="12"/>
+            </Border.StrokeShape>
+            <VerticalStackLayout Spacing="4" Padding="16">
+                <Label Text="DESCRIPCIÓN"
+					   FontSize="11"
+					   FontAttributes="Bold"
+					   TextColor="#8A919E"
+					   CharacterSpacing="1.5"/>
+                <Label x:Name="lblDescripcion"
+					   TextColor="#1A1D23"
+					   FontSize="15"
+					   Margin="0,0,0,12"/>
+                <Label Text="COORDENADAS"
+					   FontSize="11"
+					   FontAttributes="Bold"
+					   TextColor="#8A919E"
+					   CharacterSpacing="1.5"/>
+                <Label x:Name="lblCoordenadas"
+					   TextColor="#1A1D23"
+					   FontSize="14"/>
             </VerticalStackLayout>
-        </Frame>
+        </Border>
 
-        <Button Text=" Ver en Google Maps"
-                Clicked="OnVerMapaClicked"
-                BackgroundColor="#2B6CB0" TextColor="White" CornerRadius="12"/>
+        <Button Text="Ver en Google Maps"
+		  Clicked="OnVerMapaClicked"
+		  BackgroundColor="#3B5BDB"
+		  TextColor="White"
+		  CornerRadius="12"
+		  FontAttributes="Bold"
+		  HeightRequest="48"/>
 
-        <Button Text=" Compartir Imagen"
-                Clicked="OnCompartirClicked"
-                BackgroundColor="#2F9E44" TextColor="White" CornerRadius="12"/>
+        <Button Text="Compartir Imagen"
+		 Clicked="OnCompartirClicked"
+		 BackgroundColor="#FFFFFF"
+		 TextColor="#3B5BDB"
+		 BorderColor="#D0D7E6"
+		 BorderWidth="1"
+		 CornerRadius="12"
+		 FontAttributes="Bold"
+		 HeightRequest="48"/>
 
     </VerticalStackLayout>
 </ContentPage>
