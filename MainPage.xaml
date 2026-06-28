@@ -40,7 +40,10 @@
             </HorizontalStackLayout>
 
             <Button Text="Salir App" Clicked="OnSalirClicked"
-                    BackgroundColor="#E63946" TextColor="White" CornerRadius="12"/>
+             BackgroundColor="#E63946" TextColor="White" CornerRadius="14"
+             FontAttributes="Bold" HeightRequest="42"
+             WidthRequest="160" HorizontalOptions="Center"
+             Margin="0,5,0,15"/>
 
         </VerticalStackLayout>
     </ScrollView>
